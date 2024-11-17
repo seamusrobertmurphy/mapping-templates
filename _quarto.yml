@@ -17,13 +17,13 @@ website:
     collapse-level: 1
     contents:
 
-      - text: "Projects"
+      - text: "Field Maps"
         href: projects/index.qmd
 
-      - text: "Talks"
+      - text: "Watershed Maps"
         href: talks/index.qmd
 
-      - text: "Blog"
+      - text: "Population Maps"
         href: blog.qmd
 
       - section: "About"

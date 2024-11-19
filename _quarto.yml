@@ -28,9 +28,9 @@ website:
 
       - section: "About"
         contents:
-          - text: "About me"
+          - text: "CV"
             href: about.qmd
-          - text: "This template"
+          - text: "Library"
             href: about_template.qmd
 
 

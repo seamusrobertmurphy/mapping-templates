@@ -13,7 +13,7 @@
     "section": "",
     "text": "Read more about Quarto blogs here.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\n\n\nOct 25, 2022\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\n\n\nOct 22, 2022\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
-      "Blog"
+      "Population Maps"
     ]
   },
   {
@@ -24,7 +24,7 @@
     "text": "Twitter\n  \n  \n    \n     LinkedIn\n  \n  \n    \n     Github\n  \n\n  \n  \nI am a researcher at University of Oslo.\nMy work is about Electronic Health Records.\n\n\nUniversity of Oslo | Oslo, Norway\nPhD in Biostatistics | Oct 2022\n\n\n\nI have developed X R packages, published Y papers.",
     "crumbs": [
       "About",
-      "About me"
+      "CV"
     ]
   },
   {
@@ -35,7 +35,7 @@
     "text": "University of Oslo | Oslo, Norway\nPhD in Biostatistics | Oct 2022",
     "crumbs": [
       "About",
-      "About me"
+      "CV"
     ]
   },
   {
@@ -46,7 +46,7 @@
     "text": "I have developed X R packages, published Y papers.",
     "crumbs": [
       "About",
-      "About me"
+      "CV"
     ]
   },
   {
@@ -63,7 +63,7 @@
     "section": "",
     "text": "Talk at Oslo UseR meetup\n\n\n\n\n\nApr 2, 2019\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
-      "Talks"
+      "Watershed Maps"
     ]
   },
   {
@@ -73,7 +73,7 @@
     "section": "",
     "text": "Talk at Oslo UseR meetup\n\n\n\n\n\nApr 2, 2019\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
-      "Talks"
+      "Watershed Maps"
     ]
   },
   {
@@ -83,7 +83,7 @@
     "section": "Electronic Health Records",
     "text": "Electronic Health Records\n\n\n\n\n\n\n\n\n\n\nLearning from Hospital EHR data with R\n\n\n\n\n\nA 15 minutes introduction to hospital EHR data\n\n\n\n\n\nOct 28, 2019\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
-      "Talks"
+      "Watershed Maps"
     ]
   },
   {
@@ -114,7 +114,7 @@
     "section": "",
     "text": "This is an example of grid listing. You can specify the content in the yaml header in the .qmd file.\nIt is convenient to use id to link to multiple folders.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
-      "Projects"
+      "Field Maps"
     ]
   },
   {
@@ -124,7 +124,7 @@
     "section": "",
     "text": "This is an example of grid listing. You can specify the content in the yaml header in the .qmd file.\nIt is convenient to use id to link to multiple folders.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
-      "Projects"
+      "Field Maps"
     ]
   },
   {
@@ -134,7 +134,7 @@
     "section": "Table listing",
     "text": "Table listing\nThis is an example of table listing.\n\nPackages\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\npkg_1\n\n\n\n\n\n\n\npkg_2\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
-      "Projects"
+      "Field Maps"
     ]
   },
   {

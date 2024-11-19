@@ -24,31 +24,121 @@ listing:
     grid-item-border: false
     sort-ui: false
     filter-ui: false
-    
 ---
-
-
 
 ## Grid listing
 
-This is an example of **grid** listing. You can specify the content in the `yaml` header in the `.qmd` file. 
+This is an example of **grid** listing. You can specify the content in the `yaml` header in the `.qmd` file.
 
-It is convenient to use `id` to link to multiple folders. 
+It is convenient to use `id` to link to multiple folders.
 
 ::: {#ehr}
 :::
 
-
 ## Table listing
 
-This is an example of **table** listing. 
+This is an example of **table** listing.
 
-### Packages 
+### Packages
 
 ::: {#packages}
 :::
 
 
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE, htmltools.preserve.raw = FALSE)
+knitr::opts_chunk$set(
+  echo = TRUE, message = FALSE, warning = FALSE,
+  error = FALSE, comment = NA, tidy.opts = list(width.cutoff = 6)
+) 
 
+requirements = c(
+  "pacman", "easypackages")
 
+setup <- function(requirements){
+  missing.packages <- requirements[!(requirements %in% installed.packages()[,"Package"])];
+  if(length(missing.packages)) {install.packages(
+    missing.packages, repos = "https://cloud.r-project.org/"); }
+  for(package_name in requirements){library(
+    package_name,character.only=TRUE,quietly=TRUE);
+  }
+}
 
+setup(requirements)
+
+#pacman::p_load(
+easypackages::packages(  
+  "aws.s3", 
+  "caret", "cli", "cols4all", "covr", "cowplot",
+  "dendextend", "digest","DiagrammeR","dtwclust", 
+  "e1071", "exactextractr","elevatr",
+  "FNN", "future",
+  "gdalcubes", "gdalUtilities", "geojsonsf","ggplot2","ggspatial","grid",
+  "hdf5r", "httr", "httr2",
+  "jsonlite", 
+  "kohonen", 
+  "leafem", "libgeos","luz","lwgeom",
+  "mapedit", "mapview", "maptiles", "methods","mgcv","mapinsetr",
+  "ncdf4", "nnet", 
+  "openxlsx", 
+  "parallel",
+  "randomForest", "rasterVis", "raster", "Rcpp", "RcppArmadillo", "RcppCensSpatial","rayshader"
+  "RcppEigen", "RcppParallel", "RColorBrewer", "rsconnect","RStoolbox", "rts", 
+  "s2", "sf", "scales", "sits","spdep", "stars", "stringr","supercells", 
+  "terra", "testthat", "terrainr", "tidyverse", "tidyterra","tools", "tmap", "tmaptools",
+  "xgboost"
+)
+```
+
+## AOIs & BBOXs
+
+Derive `aoi` & `bbox` objects at preferred scales from site polygons & open source datasets.
+
+```{r load-aoi, message=F, warning=F, error=F, comment=F, eval=F}
+aoi_site   = sf::read_sf("./inputs/chilwa_watershed_4326.shp")
+aoi_country = giscoR::gisco_get_countries(country = "Malawi", resolution = "3")
+aoi_region = giscoR::gisco_get_countries(
+  country = c("Malawi", "Zambia", "Tanzania", "Mozambique"), resolution = "3")
+aoi_country_vect  = vect(aoi_country)
+
+bbox_site  = terrainr::add_bbox_buffer(aoi_site, 20000, "meters")
+bbox_country = terra::vect(terra::ext(vect(aoi_country)) * 1.6) 
+crs(bbox_country) = "epsg:4326"
+st_crs(bbox_country, "epsg:4326")
+st_write(aoi_country, "./inputs/aoi_country.shp", delete_layer=T)
+```
+
+## Site Map
+
+We source higher-res basemaps from `maptiles` using `get_tiles` functions
+
+```{r site_basemap, message=F, warning=F, error=F, comment=F, eval=F}
+# 'zoom' = 12 scales to 1:70,000 (https://wiki.openstreetmap.org/wiki/Zoom_levels)
+basemap_150k = maptiles::get_tiles(
+  bbox_site, 
+  zoom      = 12, 
+  crop      = T,
+  provider  = "OpenTopoMap"
+)
+
+tmap::tm_shape(basemap_150k) + tm_rgb() + 
+  tmap::tm_shape(aoi_site) +
+  tmap::tm_borders(lwd = 1, col = "red") +
+  tmap::tm_graticules(lines=T,labels.rot=c(0,90),lwd=0.2) +
+  tmap::tm_credits("EPSG:4326", position = c("left", "bottom")) + 
+  tmap::tm_scalebar(c(0, 10, 20, 40), position = c("right", "bottom"), text.size = .5) +
+  tmap::tm_compass(
+    type = "4star", size = 1.5,
+    color.dark = "gray60", text.color = "gray60",
+    position = c("left", "top")
+    ) -> map_locator_site
+map_locator_site
+
+# width & height controls resolution of output, dpi affects 'attributes' sizes
+tmap::tmap_save(
+  map_locator_site, "./outputs/map_locator_site.png", 
+  width=15120, height=15120, asp=0, dpi=2400
+  )
+```
+
+![](outputs/map_locator_site.png)
